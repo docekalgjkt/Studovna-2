@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="438.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.gjkt.view.PredmetyController">
+   <children>
+      <HBox layoutX="-1.0" layoutY="-1.0" prefHeight="39.0" prefWidth="600.0">
+         <children>
+            <Label text="Předměty">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="2.0" left="20.0" top="2.0" />
+               </HBox.margin>
+            </Label>
+            <HBox prefHeight="23.0" prefWidth="168.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handlePridejButton" text="Přidej">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleSmazButton" text="Smaž">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleUpravButton" text="Uprav">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets left="200.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </HBox>
+      <TableView fx:id="tableView" layoutY="38.0" prefHeight="400.0" prefWidth="600.0" />
+   </children>
+</AnchorPane>
