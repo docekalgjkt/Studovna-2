@@ -16,7 +16,7 @@ public class MainController {
     @FXML
     Button kurzId;
 
-    public void selectPredmety(){
+    public void selectPredmety() {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("../view/Predmety.fxml"));
         AnchorPane rootLayout = null;
@@ -28,13 +28,13 @@ public class MainController {
 
         // Show the scene containing the root layout.
         Scene scene = new Scene(rootLayout);
-        
+
         getPrimaryStage().setScene(scene);
 
 
     }
 
-    public void selectStudenti(){
+    public void selectStudenti() {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("../view/Studenti.fxml"));
         AnchorPane rootLayout = null;
@@ -52,7 +52,7 @@ public class MainController {
 
     }
 
-    public void selectKurzy(){
+    public void selectKurzy() {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("../view/Kurzy.fxml"));
         AnchorPane rootLayout;
@@ -71,4 +71,20 @@ public class MainController {
 
     }
 
+    public void selectSkolniRok() {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("../view/SkolniRok.fxml"));
+        AnchorPane rootLayout = null;
+        try {
+            rootLayout = (AnchorPane) loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Show the scene containing the root layout.
+        Scene scene = new Scene(rootLayout);
+
+        getPrimaryStage().setScene(scene);
+
+    }
 }
