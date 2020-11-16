@@ -1,22 +1,32 @@
 package cz.gjkt.view;
 
+import cz.gjkt.application.Main;
 import cz.gjkt.model.KurzyDAOJDBC;
 import cz.gjkt.model.Kurz;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static cz.gjkt.application.Main.getPrimaryStage;
 
 public class KurzyController implements Initializable {
 
@@ -150,6 +160,22 @@ public class KurzyController implements Initializable {
     }
 
 
-    public void handleZpetButton(){}
+    public void handleDomuButton() throws IOException{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("../view/Main.fxml"));
+        AnchorPane rootLayout = null;
+        try {
+            rootLayout = (AnchorPane) loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Show the scene containing the root layout.
+        Scene scene = new Scene(rootLayout);
+
+        getPrimaryStage().setScene(scene);
+
+    }
+
 }
 
