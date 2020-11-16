@@ -136,9 +136,12 @@ public class PredmetyController implements Initializable {
         tableView.refresh();
     }
 
-    public void handleUpravButton(){
+    public void handleUpravButton(){}
+
+    public void handleDomuButton(){
 
     }
+
 
 
     @Override
