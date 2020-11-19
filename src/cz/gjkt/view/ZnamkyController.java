@@ -180,7 +180,7 @@ public class ZnamkyController implements Initializable {
             e.printStackTrace();
         }
 
-        // Show the scene containing the root layout.
+        // dShow the scene containing the root layout.
         Scene scene = new Scene(rootLayout);
 
         getPrimaryStage().setScene(scene);
