@@ -6,8 +6,8 @@ import java.util.List;
 public class KurzyDAOJDBC implements IModelDao<Kurz> {
 
     private static final String TABLE = "Kurz";
-    private static final String[] ALL_COLUMNS = {"id","nazev","skolniRok","predmet"};
-    private static final String[] UPDATE_COMUNS = {"id","nazev","skolniRok","predmet",};
+    private static final String[] ALL_COLUMNS = {"id","nazev", "skolniRok","predmet"};
+    private static final String[] UPDATE_COMUNS = {"id","nazev", "skolniRok","predmet",};
 
     @Override
     public int insert(Kurz object) {
@@ -92,9 +92,8 @@ public class KurzyDAOJDBC implements IModelDao<Kurz> {
         List<List<Object>> rs = dbManager.select(TABLE,ALL_COLUMNS,ids,null);
         for(List<Object> row : rs ) {
             kurz.setId((int)row.get(0));
-            kurz.setNazev((String)row.get(1));
-            kurz.setSkolniRok((String) row.get(2));
-            kurz.setPredmet((String) row.get(3));
+            kurz.setSkolniRok((int)row.get(1));
+            kurz.setPredmet((int) row.get(2));
         }
         dbManager.close();
         return kurz;
@@ -116,10 +115,10 @@ public class KurzyDAOJDBC implements IModelDao<Kurz> {
         List<List<Object>> recordSet = dbManager.select(TABLE,ALL_COLUMNS,condition,null);
         for (List<Object> row : recordSet){
             Kurz kurz = new Kurz();
-            kurz.setId((int) row.get(0));
+            kurz.setId((int)row.get(0));
             kurz.setNazev((String) row.get(1));
-            kurz.setSkolniRok((String) row.get(2));
-            kurz.setPredmet((String) row.get(3));
+            kurz.setSkolniRok((int)row.get(2));
+            kurz.setPredmet((int) row.get(3));
             kurzy.add(kurz);
         }
         return kurzy;
@@ -132,11 +131,11 @@ public class KurzyDAOJDBC implements IModelDao<Kurz> {
         List<List<Object>> recordSet = dbManager.select(TABLE,ALL_COLUMNS,null,null);
         for (List<Object> row : recordSet){
             Kurz kurz = new Kurz();
-            kurz.setId((int) row.get(0));
-            kurz.setNazev((String) row.get(1));
-            kurz.setSkolniRok((String) row.get(2));
-            kurz.setPredmet((String) row.get(3));
-           kurzy.add(kurz);
+            kurz.setId((int)row.get(0));
+            kurz.setNazev((String)row.get(1));
+            kurz.setSkolniRok((int) row.get(2));
+            kurz.setPredmet((int) row.get(3));
+            kurzy.add(kurz);
         }
         return kurzy;
     }

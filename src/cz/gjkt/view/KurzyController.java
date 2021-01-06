@@ -40,24 +40,22 @@ public class KurzyController implements Initializable {
 
 
     public void fillTable(){
-        //kurzy = kurzyDao.getAll();
-        //items = FXCollections.observableList(kurzy);
-        //tableView.setItems(items);
+        /*kurzy = kurzyDao.getAll();
+        items = FXCollections.observableList(kurzy);
+        tableView.setItems(items);*/
     }
 
     public void initColumns() {
 
-        TableColumn<String, Kurz> idColumn = new TableColumn<>("ID");
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         TableColumn<String, Kurz> nazevColumn = new TableColumn<>("Název");
         nazevColumn.setCellValueFactory(new PropertyValueFactory<>("nazev"));
-        TableColumn<String, Kurz> skolnirokColumn = new TableColumn<>("Školní Rok");
-        skolnirokColumn.setCellValueFactory(new PropertyValueFactory<>("skolnirok"));
+        TableColumn<String, Kurz> skolniRokColumn = new TableColumn<>("Školní Rok");
+        skolniRokColumn.setCellValueFactory(new PropertyValueFactory<>("skolniRok"));
         TableColumn<String, Kurz> predmetColumn = new TableColumn<>("Předmět");
         predmetColumn.setCellValueFactory(new PropertyValueFactory<>("predmet"));
-        predmetColumn.setEditable(true);
+        nazevColumn.setEditable(true);
 
-        tableView.getColumns().addAll(idColumn,nazevColumn,skolnirokColumn,predmetColumn);
+        tableView.getColumns().addAll(nazevColumn,skolniRokColumn,predmetColumn);
     }
 
     public void handleSelection(){
@@ -66,9 +64,9 @@ public class KurzyController implements Initializable {
 
         selectedItems = selectionModel.getSelectedItems();
 
-        /*selectedItems.addListener(new ListChangeListener<Kurz>() {
+        /*selectedItems.addListener(new ListChangeListener<Predmet>() {
             @Override
-            public void onChanged(Change<? extends Kurz> change) {
+            public void onChanged(Change<? extends Predmet> change) {
                 System.out.println("Selection changed: " + change.getList());
                 System.out.println("Selected: " + selectedItems.get(0));
             }
@@ -106,23 +104,19 @@ public class KurzyController implements Initializable {
         grid.setVgap(10);
 
         // Komponenty
-        TextField idTextField = new TextField();
-        Label idLabel = new Label("ID");
         TextField nazevTextField = new TextField();
         Label nazevLabel = new Label("Název");
-        TextArea skolnirokTextArea = new TextArea();
-        Label skolnirokLabel = new Label("Školní Rok");
+        TextField skolniRokTextField = new TextField();
+        Label skolniRokLabel = new Label("Školní Rok");
         TextField predmetTextField = new TextField();
         Label predmetLabel = new Label("Předmět");
 
-        grid.add(idLabel, 0, 0);
-        grid.add(idTextField, 1, 0);
-        grid.add(nazevLabel, 0,1 );
-        grid.add(nazevTextField, 1, 1);
-        grid.add(skolnirokLabel,0,2);
-        grid.add(skolnirokTextArea,1,2);
-        grid.add(predmetLabel,0,3);
-        grid.add(predmetTextField,1,3);
+        grid.add(nazevLabel, 0, 0);
+        grid.add(nazevTextField, 1, 0);
+        grid.add(skolniRokLabel, 0, 1);
+        grid.add(skolniRokTextField, 1, 1);
+        grid.add(predmetLabel,0,2);
+        grid.add(predmetTextField,1,2);
 
 
         dialog.getDialogPane().setContent(grid);
@@ -130,12 +124,14 @@ public class KurzyController implements Initializable {
         dialog.setResultConverter(new Callback<ButtonType, Kurz>() {
             @Override
             public Kurz call(ButtonType param) {
-                Kurz kurz = new Kurz();
-                kurz.setId(idTextField.getText());
-                kurz.setNazev(skolnirokTextArea.getText());
-                kurz.setSkolniRok(nazevTextField.getText());
-                kurz.setPredmet(predmetTextField.getText());
-                return  kurz;
+                if (param == createButtonType) {
+                    Kurz kurz = new Kurz();
+                    kurz.setNazev(nazevTextField.getText());
+                    kurz.setSkolniRok(skolniRokTextField.getText());
+                    kurz.setPredmet(predmetTextField.getText());
+                    return kurz;
+                }
+                return null;
             }
         });
     }
@@ -149,20 +145,13 @@ public class KurzyController implements Initializable {
         tableView.refresh();
     }
 
-    public void handleUpravButton(){}
+    public void handleUpravButton(){
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        initColumns();
-        fillTable();
-        handleSelection();
     }
 
-
-    public void handleDomuButton() throws IOException{
+    public void handleDomuButton(){
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("../view/Main.fxml"));
+        loader.setLocation(Main.class.getResource("../view/main.fxml"));
         AnchorPane rootLayout = null;
         try {
             rootLayout = (AnchorPane) loader.load();
@@ -173,8 +162,17 @@ public class KurzyController implements Initializable {
         // Show the scene containing the root layout.
         Scene scene = new Scene(rootLayout);
 
-        getPrimaryStage().setScene(scene);
+        Main.getPrimaryStage().setScene(scene);
+    }
 
+
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initColumns();
+        fillTable();
+        handleSelection();
     }
 
 }

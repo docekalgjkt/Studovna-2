@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import javax.swing.text.LabelView;
@@ -131,7 +132,8 @@ public class PredmetyController implements Initializable {
                     predmet.setZkratka(zkratkaTextField.getText());
                     return  predmet;
             }
-        });
+        }
+        );
     }
 
     public void handleSmazButton(){
@@ -143,7 +145,26 @@ public class PredmetyController implements Initializable {
         tableView.refresh();
     }
 
-    public void handleUpravButton(){}
+    public void handleUpravButton(){
+        try {
+
+            Predmet item = (Predmet) tableView.getSelectionModel().getSelectedItem();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/Predmety.fxml"));
+            AnchorPane root = (AnchorPane) loader.load();
+            PredmetyController controller = (PredmetyController) loader.getController();
+            /*controller.setPredmet(item);
+            controller.setNazev(item.getNazev());
+            controller.setZkratka(item.getZkratka());
+            controller.setPredmetyScene(tableView.getScene());
+            controller.setPredmetyController(this);*/
+            Scene scene = new Scene(root);
+            Stage ps = Main.getPrimaryStage();
+            ps.setScene(scene);
+
+
+        }catch (IOException e){e.printStackTrace();}
+    }
 
     public void handleDomuButton() throws IOException {
         FXMLLoader loader = new FXMLLoader();

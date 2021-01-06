@@ -3,6 +3,7 @@ package cz.gjkt.view;
 import cz.gjkt.application.Main;
 import cz.gjkt.model.Znamka;
 import cz.gjkt.model.ZnamkyDAOJDBC;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,9 +37,9 @@ public class ZnamkyController implements Initializable {
 
 
     public void fillTable(){
-        //kurzy = kurzyDao.getAll();
-        //items = FXCollections.observableList(kurzy);
-        //tableView.setItems(items);
+        znamky = znamkyDao.getAll();
+        items = FXCollections.observableList(znamky);
+        tableView.setItems(items);
     }
 
     public void initColumns() {
