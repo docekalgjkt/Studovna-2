@@ -1,25 +1,33 @@
 package cz.gjkt.view;
 
+import cz.gjkt.application.Main;
 import cz.gjkt.model.Predmet;
 import cz.gjkt.model.PredmetyDAOJDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import javax.swing.text.LabelView;
+import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static cz.gjkt.application.Main.getPrimaryStage;
 
 
 public class PredmetyController implements Initializable {
@@ -124,7 +132,8 @@ public class PredmetyController implements Initializable {
                     predmet.setZkratka(zkratkaTextField.getText());
                     return  predmet;
             }
-        });
+        }
+        );
     }
 
     public void handleSmazButton(){
@@ -137,8 +146,43 @@ public class PredmetyController implements Initializable {
     }
 
     public void handleUpravButton(){
+        try {
+
+            Predmet item = (Predmet) tableView.getSelectionModel().getSelectedItem();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/Predmety.fxml"));
+            AnchorPane root = (AnchorPane) loader.load();
+            PredmetyController controller = (PredmetyController) loader.getController();
+            /*controller.setPredmet(item);
+            controller.setNazev(item.getNazev());
+            controller.setZkratka(item.getZkratka());
+            controller.setPredmetyScene(tableView.getScene());
+            controller.setPredmetyController(this);*/
+            Scene scene = new Scene(root);
+            Stage ps = Main.getPrimaryStage();
+            ps.setScene(scene);
+
+
+        }catch (IOException e){e.printStackTrace();}
+    }
+
+    public void handleDomuButton() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("../view/Main.fxml"));
+        AnchorPane rootLayout = null;
+        try {
+            rootLayout = (AnchorPane) loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Show the scene containing the root layout.
+        Scene scene = new Scene(rootLayout);
+
+        getPrimaryStage().setScene(scene);
 
     }
+
 
 
     @Override

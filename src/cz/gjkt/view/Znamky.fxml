@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.gjkt.view.KurzyController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.gjkt.view.ZnamkyController">
     <children>
-        <Label layoutX="26.0" layoutY="6.0" prefHeight="42.0" prefWidth="206.0" text="Přehled Kurzů">
+        <Label layoutX="26.0" layoutY="6.0" prefHeight="42.0" prefWidth="204.0" text="Přehled známek">
             <font>
                 <Font size="26.0" />
             </font>
@@ -23,7 +23,7 @@
         </HBox>
         <HBox layoutX="494.0" layoutY="19.0" prefHeight="26.0" prefWidth="78.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#handleDomuButton" prefHeight="26.0" prefWidth="65.0" text="Domů" />
+                <Button mnemonicParsing="false" onAction="#handleDomuButton" prefHeight="1.0" prefWidth="56.0" text="Domů" />
             </children>
         </HBox>
         <TableView fx:id="tableView" layoutY="48.0" prefHeight="350.0" prefWidth="600.0" />
