@@ -10,7 +10,7 @@ import java.util.List;
 public class DBManager {
 
     private static final String DB_PATH = "res/";
-    private static final String DB_NAME = "Studovna1";
+    private static final String DB_NAME = "Studovna";
     private Connection connection;
 
     public DBManager(String dbname){
