@@ -65,14 +65,6 @@ public class PredmetyController implements Initializable {
         selectionModel.setSelectionMode(SelectionMode.SINGLE);
 
         selectedItems = selectionModel.getSelectedItems();
-
-        /*selectedItems.addListener(new ListChangeListener<Predmet>() {
-            @Override
-            public void onChanged(Change<? extends Predmet> change) {
-                System.out.println("Selection changed: " + change.getList());
-                System.out.println("Selected: " + selectedItems.get(0));
-            }
-        });*/
     }
 
     public void handlePridejButton(){
@@ -150,14 +142,12 @@ public class PredmetyController implements Initializable {
 
             Predmet item = (Predmet) tableView.getSelectionModel().getSelectedItem();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/Predmety.fxml"));
+            loader.setLocation(Main.class.getResource("../view/Predmet.fxml"));
             AnchorPane root = (AnchorPane) loader.load();
-            PredmetyController controller = (PredmetyController) loader.getController();
-            /*controller.setPredmet(item);
-            controller.setNazev(item.getNazev());
-            controller.setZkratka(item.getZkratka());
-            controller.setPredmetyScene(tableView.getScene());
-            controller.setPredmetyController(this);*/
+            UpravPredmetController controller = (UpravPredmetController) loader.getController();
+            controller.setPredmet(item);
+            controller.setUpravPredmetScene(tableView.getScene());
+            controller.setUpravPredmetController(this);
             Scene scene = new Scene(root);
             Stage ps = Main.getPrimaryStage();
             ps.setScene(scene);
@@ -180,7 +170,6 @@ public class PredmetyController implements Initializable {
         Scene scene = new Scene(rootLayout);
 
         getPrimaryStage().setScene(scene);
-
     }
 
 
@@ -190,5 +179,9 @@ public class PredmetyController implements Initializable {
         initColumns();
         fillTable();
         handleSelection();
+    }
+
+    public void refresh() {
+        tableView.refresh();
     }
 }

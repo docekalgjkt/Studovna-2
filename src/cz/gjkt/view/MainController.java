@@ -16,7 +16,7 @@ public class MainController {
     @FXML
     Button kurzId;
 
-    public void selectPredmety() {
+    public void selectPredmety(){
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("../view/Predmety.fxml"));
         AnchorPane rootLayout = null;
@@ -25,11 +25,10 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         // Show the scene containing the root layout.
         Scene scene = new Scene(rootLayout);
 
-        getPrimaryStage().setScene(scene);
+        Main.getPrimaryStage().setScene(scene);
 
 
     }
